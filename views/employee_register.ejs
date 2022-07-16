@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/styles.css">
+</head>
+<body>
+
+    <%- include('nav.ejs') %> 
+
+    <div class="row">
+        <div class="regImg col"></div>
+
+        <form action="/employee_register/add" method="post" class="regForm">
+
+            
+                
+            <h2>Register an Account</h2>
+            
+            <div class="regCon">
+                <input type="text" name="emply_id" id="emply_id" placeholder="Employee Id">
+
+                <input type="text" name="first_nm" id="first_nm" placeholder="First Name">
+    
+                <input type="text" name="last_nm" id="last_nm" placeholder="Last Name">
+    
+                <input type="email" name="email" id="email" placeholder="Email Address">
+    
+                <input type="password" name="password" id="password" placeholder="Password">
+                <br>
+    
+                <input type="checkbox" name="" id=""> I agree to <a href="">Terms</a> and <a href="">Conditions</a>
+                <br>
+    
+                <button type="submit">Register</button>
+                
+            </div>
+           
+        </form>
+    </div>
+    
+   
+</body>
+</html>

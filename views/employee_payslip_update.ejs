@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        nav {
+            width: 100%; 
+            position: relative;
+            background-color: black;
+            
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            width: 40%;
+            justify-content: space-between;
+            margin-left: 50%;
+            
+        }nav ul li {
+            padding: 10px 5px;
+        }
+        nav ul li a{
+            text-decoration: none;
+            color: white;
+            font-size: 1.3em;
+        }
+        form {
+            margin: 5% 0 0 28%;
+            width: 800px;
+            height: 500px;
+        }
+        h1 {
+            margin: 4% 0;
+            text-align: center;
+        }
+        .dateInfo {
+            width: 100%;
+            margin-bottom: 2%;
+        }
+        button {
+            padding: 8px;
+            width: 25%;
+            margin: 3%;
+            background-color: rgb(0, 0, 0, 0.9);
+            color: white;
+            font-size: 1.1em;
+            border-radius: 15px;
+            border: none;
+        }
+        button:hover {
+            background-color: gold;
+            color: black;
+        }
+        .container {
+            width: 80%;
+            display: flex;
+            border: 2px solid black;
+        }
+        .col {
+            flex: 50%;
+            margin-right: 2%;
+            justify-content: space-around;
+           
+            height: 150px;
+            padding: 2%;
+        }
+        .col input {
+            padding: 5px;
+        }
+        .col input[name="date"] {
+            width: 64%;
+            margin-left: 19%;
+        }
+        .col input[name="net_pay"] {
+            margin-left: 5%;
+        }
+        .col label {
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+
+    <%- include('nav.ejs') %> 
+
+    <h1>Update Employee Payslip Information</h1>
+    
+    <form action="/employee_payslip/update/:id" method="post">
+
+
+        <input type="hidden" name="id" value="<%= data[0].id %>"/>
+
+
+        <div class="container">
+
+            <div class="dateInfo col">
+                <label for="">Employee Id:
+                    <input type="text" name="emply_id" value="<%= data[0].emply_id %>" placeholder="<%= data[0].emply_id %>" />
+                </label>
+                <br><br>
+                <pre></pre>
+
+                <label for="">Date:
+                    <input type="date" name="date" value="<%= new Date(data[0].date).toLocaleDateString('fr-CA') %>" placeholder="<%= new Date(data[0].date).toLocaleDateString('fr-CA') %>" />
+                </label>
+                <br><br>
+                <pre></pre>
+
+                <label for="">Regular Pay:
+                    <input type="number" name="regular_pay" value="<%= data[0].regular_pay %>" placeholder="<%= data[0].regular_pay %>" />
+                </label>
+            </div>
+
+            <div class="netIncome col">
+                <label for="">Overtime:
+                    <input type="number" name="overtime" value="<%= data[0].overtime %>" placeholder="<%= data[0].overtime %>" />
+                </label>
+                <br><br>
+                <pre></pre>
+
+                <label for="">Gross Pay:
+                    <input type="number" name="gross_pay" value="<%= data[0].gross_pay %>" placeholder="<%= data[0].gross_pay %>" />
+                </label>
+                <br><br>
+                <pre></pre>
+
+                <label for="">Net Pay:
+                    <input type="number" name="net_pay" value="<%= data[0].net_pay %>" placeholder="<%= data[0].net_pay %>" />
+                </label>
+            </div>
+
+            
+        </div>
+
+        <div class="submitUpdate">
+            <button type="submit">Submit Changes</button>
+        </div>
+    </form>
+
+
+</body>
+</html>

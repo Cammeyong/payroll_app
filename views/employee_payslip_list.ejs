@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= page_title  %> </title>
+    <link rel="stylesheet" href="../public/styles.css">
+</head>
+<body>
+    
+    <%- include('nav.ejs') %> 
+    
+
+    <a href="/logout" class="userLogout"><button type="submit" >Logout</button></a>
+
+    <h1>Employee Payslip</h1>
+
+    <form action="/employee_payslip_list" method="post" class="payslip_list">
+
+        <input type="hidden" name="id" id="id">
+
+        <div class="con">
+        <div class="CNP">
+            <a href="/new_payslip"><button type="button">Create New Payslip</button></a>
+        </div>
+
+        <label for="" style="margin-left: 10%; font-size: 1.2rem"><b>Total Generated Payslips: <%= net_pay[0].Total_Employees%></b></label>
+    </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Employee Id</th>
+                    <th>Date</th>
+                    <th>Regulay Pay</th>
+                    <th>Overtime</th>
+                    <th>Gross Pay</th>
+                    <th>Net Pay</th>
+                    <th>Action</th>
+                    
+                </tr>
+            </thead>
+
+            <tbody>
+                <% if(payslip.length) { for(var i = 0; i< payslip.length; i++) {%>
+                    <tr>
+                        <td><%= payslip[i].emply_id %></td>
+                        <td><%= new Date(payslip[i].date).toLocaleDateString('fr-CA') %></td>
+                        <td><%= payslip[i].regular_pay %></td>
+                        <td><%= payslip[i].overtime %></td>
+                        <td><%= payslip[i].gross_pay %></td>
+                        <td><%= payslip[i].net_pay %></td>
+                        <td>
+                            <a href="/employee_payslip/edit/<%=payslip[i].id%>" class="update">Edit</a>
+                            <a href="/employee_payslip/delete/<%=payslip[i].id%>" class="delete">Delete</a>
+                        </td>
+                    </tr>
+                <% } %>
+
+                    <tr>
+                        <td colspan="5" style="text-align: right;"><b>Total Outgoing Payments:</b></td>
+                        <td><b> $<%= net_pay[0].Total_Payments %> </b></td>
+
+                    </tr>
+                <%
+        
+                }else{ %>
+                    <tr>
+                        <td colspan="5">No Emplyee Payslip To View </td>
+                    </tr>
+                <% } %>
+            </tbody>
+
+        </table>
+
+       <div class="payslipSum">
+        <p>SUMMARY:</p>
+        <br>
+        <ul>
+            <li>Minimum Payment: $<%= net_pay[0].Minimum_Outgoing_Payment %></li>
+            <li>Maximum Payment: $<%= net_pay[0].Maximum_Outgoing_Payment %></li>
+            <li>Average Payment: $<%= net_pay[0].Average_Payments.toFixed(2) %></li>
+            
+        </ul>
+        </div>
+
+        <br>
+
+               
+    </form>
+    
+</body>
+</html>

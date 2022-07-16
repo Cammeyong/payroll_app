@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/styles.css">
+</head>
+<body>
+
+    <%- include('nav.ejs') %> 
+
+
+    <% 
+        if(my_session.loggedin == true){
+    %> 
+
+         <div class="homeImg2"></div>
+
+        <h1>Welcome <%= my_session.first_nm %></h1>
+
+        <div class="viewBtnCon">
+
+            <div class="col">
+                <button class="conAccBtn">Contact Accounts</button>
+            </div>
+        
+            <div class="col">
+
+                
+                <a href="/employee_payslip_view/<%=user.emply_id%>"><button type="button" class="viewPayslipBtn">View Payslip</button></a>
+            </div>
+        </div>
+        
+    <%
+        }
+    %>
+    
+</body>
+</html>

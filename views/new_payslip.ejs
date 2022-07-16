@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/styles.css">
+    <style>
+        h1 {
+            background-color: white;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    
+    <%- include('nav.ejs') %>
+
+
+    <div class="viewPayslip">
+        <a href="/employee_payslip_list"><button type="button">View All Payslips</button></a>
+    </div>
+
+      
+    <h3>Create New Payslip Entry</h3>
+
+    <form action="/new_payslip/add" method="post" class="new_payslipForm">
+
+
+        <div class="">
+            <input type="text" name="emply_id" placeholder="Employee Id">
+
+            <input type="date" name="date" id="date" placeholder="Date">
+
+            <input type="number" name="regular_pay" id="regular_pay" placeholder="Regular Pay">
+
+            <input type="number" name="overtime" id="overtime" placeholder="Overtime">
+
+            <input type="number" name="gross_pay" id="gross_pay" placeholder="Gross Pay">
+
+            <input type="number" name="tax_id" id="tax_id" placeholder="Tax Id">
+
+            <input type="number" name="net_pay" id="net_pay" placeholder="Net Pay">
+
+            <br>
+
+            
+        </div>
+
+        <div class="add">
+            <button type="submit">Add Payslip</button>
+        </div>
+        
+
+        
+
+
+    </form>
+
+</body>
+</html>

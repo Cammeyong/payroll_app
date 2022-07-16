@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/styles.css">
+</head>
+<body>
+
+    <%- include('nav.ejs') %> 
+
+    <% if (messages?.error) { %>
+        <p style="color: red;"> <%- messages.error %> </p>
+    <% } %> 
+    
+    <form action="/login" method="post" class="logForm">
+
+        <img src="https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg" alt="Login Icon" class="loginIcon">
+        <br>
+
+        <input type="email" name="email" id="email" placeholder="Username"/>
+        <br>
+
+        <input type="password" name="password" id="password" placeholder="Password"/>
+        <br>
+
+        <div class="remGet">
+
+            <div>
+                <input type="checkbox" name="" id=""> Remember me
+            </div>
+
+            <a href="">forget your password?</a>
+
+        </div>
+
+        <br>
+
+        <button type="submit">Login</button>
+
+        <br>
+
+        <p>Do not have a account? register <a href="">here</a></p>
+    </form>
+</body>
+</html>

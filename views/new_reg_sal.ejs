@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= page_title %> </title>
+    <link rel="stylesheet" href="../public/styles.css">
+</head>
+<body>
+    <%- include('nav.ejs') %> 
+
+    <div class="homeImg"></div>
+
+
+    <button>New Employee</button>
+
+    <button>Add Hours</button>
+
+    <br>
+
+    <h1>Create New Employee</h1>
+
+    <form action="new_reg_sal/add" method="post" class="regForm">
+
+            
+        <h2>Register New Employee</h2>
+        
+        <div class="regCon">
+            <input type="text" name="emply_id" id="emply_id" placeholder="Employee Id">
+
+            <input type="text" name="first_nm" id="first_nm" placeholder="First Name">
+
+            <input type="text" name="last_nm" id="last_nm" placeholder="Last Name">
+
+            <br><br>
+
+            <label for="">Department</label>
+            <select name="department_id" id="department_id">
+                <option value="1">Operation</option>
+                <option value="2">Sales & Marketing</option>
+                <option value="3">Administration</option>
+                <option value="4">Accounts</option>
+            </select>
+
+            <label for="">Regular Week Hours</label>
+            <select name="basic_hrs" id="basic_hrs">
+                <option value="45">Ops Hours</option>
+                <option value="40">S & M Hours</option>
+                <option value="40">Admin Hours</option>
+                <option value="40">Acc. Hours</option>
+            </select>
+
+
+            <br>
+            <label for="">Regular Hours</label>
+            <input type="number" name="reg_hrs_wrkd" id="reg_hrs_wrkd">
+
+            <br>
+
+            <label for="">Overtime Hours</label>
+            <input type="number" name="ot_hrs" id="ot_hrs">
+
+            <br>
+
+            <label for="">Absent Days</label>
+            <input type="number" name="days_absent" id="days_absent">
+
+            <br>
+
+            <label for="">Absent Reason</label>
+            <select name="absent_id" id="absent_id">
+                <option value="1">Absent</option>
+                <option value="2">Sick</option>
+                <option value="3">Maternity Leave</option>
+                <option value="4">Vacation</option>
+                <option value="5">Not Applicable</option>
+            </select>
+            
+            <br>
+           
+
+            <button type="submit">Register</button>
+            
+        </div>
+       
+    </form>
+    
+</body>
+</html>
