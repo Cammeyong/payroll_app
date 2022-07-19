@@ -4,7 +4,7 @@ var conn = require('../lib/db');
 
 router.get('/new_payslip', function(req,res,next){
  
-    if(req.session.loggedin ==true) {
+    // if(req.session.loggedin ==true) {
     conn.query ("SELECT * FROM payslip", function(err, rows) {
         if(err){
             console.log(err);
@@ -15,15 +15,15 @@ router.get('/new_payslip', function(req,res,next){
              next();
         }
     })
-    } else{
-        res.redirect('/login')
-    }
+    // } else{
+    //     res.redirect('/login')
+    // }
 
 });
 
 router.post('/new_payslip/add', async function(req,res,){
   
-    if(req.session.loggedin ==true) {
+    // if(req.session.loggedin ==true) {
 
     let data = {emply_id:   req.body.emply_id,
         date:               req.body.date,
@@ -45,9 +45,9 @@ router.post('/new_payslip/add', async function(req,res,){
     // res.send(JSONResponse(results));
     });
 
-}else{
-    res.redirect('/login')
-}
+// }else{
+//     res.redirect('/login')
+// }
    
 })
 

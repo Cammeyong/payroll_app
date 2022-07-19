@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/styles.css">
+   
+</head>
+<body>
+    `<%- include('nav.ejs') %> 
+    
+
+    <h1>Employee Work Sheet</h1>
+
+    <form action="/update_sal" method="post" class="tour_com_list">
+
+        <input type="hidden" name="id" id="id">
+
+        <div class="con">
+            <div class="CNP">
+                <a href="/new_reg_sal"><button type="button">Register New Employee Work Sheet</button></a>
+            </div>
+
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Basic Hours</th>
+                    <th>Days Absent</th>
+                    <th>Reason</th>
+                    <th>Regular Hours</th>
+                    <th>Overtime</th>
+                    <th>Action</th>
+                    
+                </tr>
+            </thead>
+
+            <tbody>
+                <% if(newSal.length) { for(var i = 0; i< newSal.length; i++) {%>
+                    <tr>
+                        <td><%= newSal[i].emply_id %></td>
+                        <td><%= newSal[i].first_nm + " " + newSal[i].last_nm %> </td>
+                        <td><%= new Date(newSal[i].date_from).toLocaleDateString('fr-CA') %></td>
+                        <td><%= new Date(newSal[i].date_to).toLocaleDateString('fr-CA') %></td>
+                        <td><%= newSal[i].basic_hrs %></td>
+                        <td><%= newSal[i].days_absent %></td>
+                        <td><%=newSal[i].absent_id%></td>
+                        <td><%=newSal[i].reg_hrs_wrkd %></td>
+                        <td><%=newSal[i].ot_hrs %></td>
+                        <td>
+                            <a href="/edit_workSheet/edit/<%=newSal[i].id%>" class="update">Edit</a>
+                            <a href="/edit_workSheet/delete/<%=newSal[i].id%>" class="delete">Delete</a>
+                        </td>
+                    </tr>
+                <% } %>
+                <%
+        
+                }else{ %>
+                    <tr>
+                        <td colspan="9" style="text-align: center;"><b>No New Work Sheet</b></td>
+                    </tr>
+                <% } %>
+            </tbody>
+
+        </table>
+               
+    </form>
+
+</body>
+</html>    

@@ -12,9 +12,9 @@ nav {
 nav ul {
     list-style: none;
     display: flex;
-    width: 40%;
+    width: 60%;
     justify-content: space-between;
-    margin-left: 50%;
+    margin-left: 30%;
     
 }nav ul li {
     padding: 10px 5px;
@@ -25,12 +25,19 @@ nav ul li a{
     font-size: 1.3em;
 }
 .homeImg {
-    background-image: url(https://wallpaperaccess.com/full/4242588.jpg);
+    background-image: url(https://n.foxdsgn.com/industryo/wp-content/uploads/2020/08/michal-pech-er5UYZIjKFE-unsplash-scaled.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 32.5rem;
+    opacity: .31;
+    transition: background .3s, border .3s, border-radius .3s, box-shadow .3s;
+    height: 100vh;
      
+}
+.overlay{
+    background-color: #020613;
+    opacity: .76;
+    transition: background .3s, border-radius .3s, opacity .3s;
 }
 h1 {
     border: 4px solid gold;

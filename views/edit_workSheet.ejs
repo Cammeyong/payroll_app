@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/styles.css">
+   
+</head>
+<body>
+
+    <form action="/edit_workSheet/update/:id" method="post">
+
+        <input type="hidden" name="id" value="<%= data[0].id %>"/>
+
+
+        <div class="container">
+
+            <div class="dateInfo col">
+                
+                <label for="">Employee ID:
+                    <input type="text" name="emply_id" value="<%= data[0].emply_id %>" placeholder="<%= data[0].emply_id %>" />
+                </label>
+                <br><br>
+                <pre></pre>
+
+                <label for="">Employee Name:
+                    <input type="text" name="name" value="<%= data[0].first_nm + " " + data[0].last_nm %>" placeholder="<%= new Date(data[0].reg_date).toLocaleDateString('fr-CA') %>" />
+                </label>
+                <br><br>
+                <pre></pre>
+
+                <label for="">Basic Hours:
+                    <input type="number" name="basic_hrs" value="<%= data[0].basic_hrs %>" placeholder="<%= data[0].basic_hrs %>" />
+                </label>
+            </div>
+
+            <div class="netIncome col">
+                <label for="">From:
+                    <input type="date" name="date_from" value="<%= new Date(data[0].date_from).toLocaleDateString('fr-CA') %>" placeholder="<%= new Date(data[0].date_from).toLocaleDateString('fr-CA') %>" />
+                </label>
+                <br><br>
+                <label for="">To:
+                    <input type="number" name="days_absent" value="<%= new Date(data[0].date_to).toLocaleDateString('fr-CA') %>" placeholder="<%= new Date(data[0].date_to).toLocaleDateString('fr-CA') %>" />
+                </label>
+                <br><br>
+                <label for="">Days Absent:
+                    <input type="number" name="days_absent" value="<%= data[0].days_absent %>" placeholder="<%= data[0].days_absent %>" />
+                </label>
+                <br><br>
+                <pre></pre>
+
+                <label for="">Reason:
+                    <input type="text" name="absent_id" value="<%= data[0].absent_id %>" placeholder="<%= data[0].absent_id %>" />
+                </label>
+                <label for="">Regular Hours:
+                    <input type="number" name="reg_hrs_wrkd" value="<%= data[0].reg_hrs_wrkd %>" placeholder="<%= data[0].reg_hrs_wrkd %>" />
+                </label>
+                <label for="">Overtime:
+                    <input type="number" name="ot_hrs" value="<%= data[0].ot_hrs %>" placeholder="<%= data[0].ot_hrs %>" />
+                </label>
+            </div>
+
+            
+        </div>
+
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>

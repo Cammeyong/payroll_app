@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var conn = require('../lib/db');
 
-router.get('/new_emp_sal', function(req,res,next) {
+router.get('/new_reg_sal', function(req,res,next) {
 
     conn.query('SELECT * FROM employee_hours_worked', function(err, rows) {
         if(err) {
@@ -41,6 +41,8 @@ router.post('/new_reg_sal/add', function(req,res) {
     // res.send(JSONResponse(results));
     });
 })
+
+
 
 
 module.exports = router;

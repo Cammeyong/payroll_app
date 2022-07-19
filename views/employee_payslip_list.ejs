@@ -24,6 +24,9 @@
         <div class="CNP">
             <a href="/new_payslip"><button type="button">Create New Payslip</button></a>
         </div>
+        <div class="CNP">
+            <a href="/update_sal"><button type="button">View Work Sheet</button></a>
+        </div>
 
         <label for="" style="margin-left: 10%; font-size: 1.2rem"><b>Total Generated Payslips: <%= net_pay[0].Total_Employees%></b></label>
     </div>
@@ -32,7 +35,7 @@
                 <tr>
                     <th>Employee Id</th>
                     <th>Date</th>
-                    <th>Regulay Pay</th>
+                    <th>Regular Pay</th>
                     <th>Overtime</th>
                     <th>Gross Pay</th>
                     <th>Net Pay</th>
@@ -46,7 +49,7 @@
                     <tr>
                         <td><%= payslip[i].emply_id %></td>
                         <td><%= new Date(payslip[i].date).toLocaleDateString('fr-CA') %></td>
-                        <td><%= payslip[i].regular_pay %></td>
+                        <td><%= payslip[i].regular_pay %> </td>
                         <td><%= payslip[i].overtime %></td>
                         <td><%= payslip[i].gross_pay %></td>
                         <td><%= payslip[i].net_pay %></td>
