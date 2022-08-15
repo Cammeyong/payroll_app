@@ -10,11 +10,8 @@
 <body>
     
     <%- include('nav.ejs') %> 
-    
 
-    <a href="/logout" class="userLogout"><button type="submit" >Logout</button></a>
-
-    <h1>Employee Payslip</h1>
+    <!-- <h1>Employee Payslip</h1> -->
 
     <form action="/employee_payslip_list" method="post" class="payslip_list">
 
@@ -25,7 +22,7 @@
             <a href="/new_payslip"><button type="button">Create New Payslip</button></a>
         </div>
         <div class="CNP">
-            <a href="/update_sal"><button type="button">View Work Sheet</button></a>
+            <a href="/acc_update_sal"><button type="button">View Work Sheet</button></a>
         </div>
 
         <label for="" style="margin-left: 10%; font-size: 1.2rem"><b>Total Generated Payslips: <%= net_pay[0].Total_Employees%></b></label>
@@ -34,10 +31,13 @@
             <thead>
                 <tr>
                     <th>Employee Id</th>
-                    <th>Date</th>
+                    <th>Pay Cycle</th>
+                    <th>From</th>
+                    <th>To</th>
                     <th>Regular Pay</th>
                     <th>Overtime</th>
                     <th>Gross Pay</th>
+                    <th>Tax</th>
                     <th>Net Pay</th>
                     <th>Action</th>
                     
@@ -48,11 +48,34 @@
                 <% if(payslip.length) { for(var i = 0; i< payslip.length; i++) {%>
                     <tr>
                         <td><%= payslip[i].emply_id %></td>
-                        <td><%= new Date(payslip[i].date).toLocaleDateString('fr-CA') %></td>
-                        <td><%= payslip[i].regular_pay %> </td>
-                        <td><%= payslip[i].overtime %></td>
-                        <td><%= payslip[i].gross_pay %></td>
-                        <td><%= payslip[i].net_pay %></td>
+                        <td><%= payslip[i].cycle_id %></td>
+                        <td><%= new Date(payslip[i].date_from).toLocaleDateString('fr-CA') %></td>
+                        <td><%= new Date(payslip[i].date_to).toLocaleDateString('fr-CA') %></td>
+                        <td><%= new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: 'USD',
+                            minimumFractionDigits: 2
+                          }).format(payslip[i].regular_pay)  %></td>
+                        <td><%= new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: 'USD',
+                            minimumFractionDigits: 2
+                          }).format(payslip[i].overtime)  %></td>
+                        <td><%= new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: 'USD',
+                            minimumFractionDigits: 2
+                          }).format(payslip[i].gross_pay)  %></td>
+                        <td><%= new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: 'USD',
+                            minimumFractionDigits: 2
+                          }).format(payslip[i].tax_rate)  %></td>
+                        <td><%= new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: 'USD',
+                            minimumFractionDigits: 2
+                          }).format(payslip[i].net_pay)  %></td>
                         <td>
                             <a href="/employee_payslip/edit/<%=payslip[i].id%>" class="update">Edit</a>
                             <a href="/employee_payslip/delete/<%=payslip[i].id%>" class="delete">Delete</a>
@@ -61,8 +84,13 @@
                 <% } %>
 
                     <tr>
-                        <td colspan="5" style="text-align: right;"><b>Total Outgoing Payments:</b></td>
-                        <td><b> $<%= net_pay[0].Total_Payments %> </b></td>
+                        <td colspan="5" style="text-align: right; font-size: 1.3rem;"><b>Total Outgoing Payments:</b></td>
+                        <td><b> $<%= new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: 'USD',
+                            minimumFractionDigits: 2
+                        }).format(net_pay[0].Total_Payments) %> </b></td>
+    
 
                     </tr>
                 <%
@@ -79,12 +107,28 @@
        <div class="payslipSum">
         <p>SUMMARY:</p>
         <br>
-        <ul>
-            <li>Minimum Payment: $<%= net_pay[0].Minimum_Outgoing_Payment %></li>
-            <li>Maximum Payment: $<%= net_pay[0].Maximum_Outgoing_Payment %></li>
-            <li>Average Payment: $<%= net_pay[0].Average_Payments.toFixed(2) %></li>
-            
-        </ul>
+            <ul>
+                <li>Minimum Payment: <%= new Intl.NumberFormat('en-US', {
+                                style: 'currency',
+                                currency: 'USD',
+                                minimumFractionDigits: 2
+                            }).format(net_pay[0].Minimum_Outgoing_Payment)  %></li>
+
+                <li>Minimum Payment: <%= new Intl.NumberFormat('en-US', {
+                                style: 'currency',
+                                currency: 'USD',
+                                minimumFractionDigits: 2
+                            }).format(net_pay[0].Maximum_Outgoing_Payment)  %></li>
+
+                <li>Minimum Payment: <%= new Intl.NumberFormat('en-US', {
+                                style: 'currency',
+                                currency: 'USD',
+                                minimumFractionDigits: 2
+                            }).format(net_pay[0].Average_Payments)  %></li>
+
+                
+                
+            </ul>
         </div>
 
         <br>

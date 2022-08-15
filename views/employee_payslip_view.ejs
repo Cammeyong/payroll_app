@@ -10,39 +10,100 @@
 <body>
     <%- include('nav.ejs') %> 
 
-    <a href="/logout" class="userLogout"><button type="submit" >Logout</button></a>
 
     <h1><%= my_session.first_nm + " " + my_session.last_nm %> Payslip</h1>
 
-    <form action="/employee_payslip_view" method="post" class="">
 
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Employee Id</th>
-                    <th>Date</th>
-                    <th>Regulay Pay</th>
-                    <th>Overtime</th>
-                    <th>Gross Pay</th>
-                    <th>Net Pay</th>
-                   
-                    
-                </tr>
-            </thead>
-
+        <table class="payView">
+            
             <tbody>
                 <% if(data.length) { for(var i = 0; i< data.length; i++) {%>
+                    <thead>
+                        <tr>
+                            <th>Employee Id</th>
+                            <th>Pay Cycle</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Regulay Pay</th>
+                            <th>Overtime</th>
+                            <th>Gross Pay</th>
+                            <th>Net Pay</th>
+                           
+                            
+                        </tr>
+                    </thead>
                     <!-- <input type="text" name="empid" value="<%= my_session.emply_id %>"> -->
                     <tr>
                         <td><%= data[i].emply_id %></td>
-                        <td><%= new Date(data[i].date).toLocaleDateString('fr-CA') %></td>
-                        <td><%= data[i].regular_pay %></td>
-                        <td><%= data[i].overtime %></td>
-                        <td><%= data[i].gross_pay %></td>
-                        <td><%= data[i].net_pay %></td>
+                        <td><%= data[i].cycle_id %></td>
+                        <td><%= new Date(data[i].date_from).toLocaleDateString('fr-CA') %></td>
+                        <td><%= new Date(data[i].date_to).toLocaleDateString('fr-CA') %></td>
+                        <td><%= new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: 'USD',
+                            minimumFractionDigits: 2
+                          }).format(data[i].regular_pay)  %></td>
+                        <td><%= new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: 'USD',
+                            minimumFractionDigits: 2
+                          }).format(data[i].overtime)  %></td>
+                        <td><%= new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: 'USD',
+                            minimumFractionDigits: 2
+                          }).format(data[i].gross_pay)  %></td>
+                        <td><%= new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: 'USD',
+                            minimumFractionDigits: 2
+                          }).format(data[i].net_pay)  %></td>
                 
                     </tr>
+                  
+                    <tr>
+                        <td colspan="5" style="text-align: right; font-weight: 600;">Deductions:</td>
+                        <td>N.H.T:</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5"></td>
+                        <td>Income Tax:</td>
+                        <td><%= new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: 'USD',
+                            minimumFractionDigits: 2
+                          }).format(data[i].tax_rate)  %> </td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td colspan="5"></td>
+                        <td>E.D.U:</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5"></td>
+                        <td>N.I.S:</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5"></td>
+                        <td>Pension:</td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr></tr>
+                    <tr>
+                        <td colspan="7" style="text-align: right; font-weight: 600;">Total Deduction:</td>
+                        <td><%= new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: 'USD',
+                            minimumFractionDigits: 2
+                          }).format(data[i].tax_rate)  %></td>
+                    </tr>
+
+                    <tr></tr>
                 <% } %>
                     
                <% }else{ %>
@@ -53,6 +114,6 @@
             </tbody>
         </table>
 
-    </form>
+
 </body>
 </html>

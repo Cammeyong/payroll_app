@@ -4,7 +4,11 @@ var conn = require('../lib/db');
 var bcrypt = require('bcrypt');
 
 router.get('/login', function(req,res,next){
-    res.render('../views/login',{ messages:req.session?.flash});
+    res.render('../views/login',{
+         messages:req.session?.flash,
+         my_session: req.session,
+         
+        });
     
     next();
 });
@@ -27,15 +31,18 @@ router.post('/login', async function(req, res) {
                 req.session.last_nm = rows[0].last_nm;
                 req.session.emply_id = rows[0].emply_id;
                 req.session.is_authorised = rows[0].authorised;
-                if (req.session.is_authorised == 1) {
+                req.session.from_department = rows[0].department;
+                
+                if (req.session.is_authorised == 0) {
 
-                    res.render('view_payslip', {
-                        user: rows[0], 
-                        my_session: req.session
-                    });
+                    res.redirect('/view_payslip');
                     
-                } else if (req.session.is_authorised == 0 ) {
-                    res.redirect('/employee_payslip_list')
+                } else if (req.session.is_authorised == 1 ) {
+                    res.redirect('/employee_payslip_list'); 
+                    
+                    
+                } else if (req.session.is_authorised == 2 ) {
+                    res.redirect('/update_sal');
                 }
                return 
              }

@@ -23,40 +23,49 @@
     </div>
 
       
-    <h3>Create New Payslip Entry</h3>
+    <h1 class="heading">Create New Payslip Entry</h1>
 
-    <form action="/new_payslip/add" method="post" class="new_payslipForm">
+    <div class="row">
 
-
-        <div class="">
-            <input type="text" name="emply_id" placeholder="Employee Id">
-
-            <input type="date" name="date" id="date" placeholder="Date">
-
-            <input type="number" name="regular_pay" id="regular_pay" placeholder="Regular Pay">
-
-            <input type="number" name="overtime" id="overtime" placeholder="Overtime">
-
-            <input type="number" name="gross_pay" id="gross_pay" placeholder="Gross Pay">
-
-            <input type="number" name="tax_id" id="tax_id" placeholder="Tax Id">
-
-            <input type="number" name="net_pay" id="net_pay" placeholder="Net Pay">
-
-            <br>
-
-            
+        <div class="col">
+            <img src="https://www.industryglobalnews24.com/images/the-new-entry-to-the-market.jpeg">
         </div>
 
-        <div class="add">
-            <button type="submit">Add Payslip</button>
+        <div class="col">
+            <form action="/new_payslip/add" method="post" class="new_payslipForm">
+
+
+                <div class="">
+                    <input type="text" name="emply_id" placeholder="Employee Id">
+        
+                    <input type="date" name="date" id="date" placeholder="Date">
+        
+                    <input type="number" name="regular_pay" id="regular_pay" placeholder="Regular Pay">
+        
+                    <input type="number" name="overtime" id="overtime" placeholder="Overtime">
+        
+                    <input type="number" name="gross_pay" id="gross_pay" placeholder="Gross Pay">
+        
+                    <input type="number" name="tax_id" id="tax_id" placeholder="Tax Id">
+        
+                    <input type="number" name="net_pay" id="net_pay" placeholder="Net Pay">
+        
+                    <br>
+        
+                    
+                </div>
+         
+                <div class="add">
+                    <button type="submit">Add Payslip</button>
+                </div>  
+        
+            </form>
         </div>
-        
+    </div>
 
-        
+   
 
-
-    </form>
+    <%- include('footer.ejs')  %> 
 
 </body>
 </html>

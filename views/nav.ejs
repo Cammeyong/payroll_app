@@ -16,7 +16,13 @@
             <li><a href="/">Blog</a></li>
             <li><a href="/">Work</a></li>
             <li><a href="/employee_register">Register</a></li>
-            <li><a href="/login">Login</a></li>
+            <% if (my_session.loggedin != true) { %>
+                <li><a href="/login">Login</a></li>
+                <% } else { %>
+                    <li><a href="/logout">Logout</a></li>
+            <% } %> 
+            
+            
             
         </ul>
     </nav>

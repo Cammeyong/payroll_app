@@ -5,39 +5,38 @@ var conn = require('../lib/db');
 
 router.get('/update_sal', function(req, res, next) {
     
-    // if(req.session.loggedin == true) {
-  
-        conn.query('SELECT * FROM employee_hours_worked', function(err,row)     {
-            console.log(err);
-                
-        
-            if(err){ 
-                res.render('../views/update_sal',
-                {
-                    page_title: "Employee Work Hours",
-                    newSal: ''
-                });   
-            }
-            else{ 
-                res.render('../views/update_sal',
-                {
-                    page_title: "Employee Work Hours",
-                    newSal: row,
-                    my_session: req.session,
-                });
-            }
-                                
-        });
-    // }else{
-    //     res.redirect('/login')
-    // }
+    if(req.session.loggedin == true && req.session.is_authorised == 2) {
+        console.log(req.session)
+        conn.query('SELECT ps.*, ps.id as payId, em.*, dp.* FROM employee_payroll.payslip ps, employee_payroll.employees em, employee_payroll.departments dp WHERE em.emply_id = ps.emply_id AND em.department = ' + req.session.from_department + ' AND dp.department_id = ' + req.session.from_department, function(err,row) {
+            // console.log(err);     
+            
+                if(err){ 
+                    console.log(err)
+                      
+                }
+                else{ 
+                    res.render('../views/update_sal',
+                    {
+                        page_title: "Employee Work Hours",
+                        newSal: row,
+                        my_session: req.session,
+                       
+                    });
+                    
+                } 
+                                          
+        });         
+
+    }else{
+        res.redirect('/login')
+    }
        
 });
 
 
 router.get('/edit_workSheet/edit/:id', function(req,res) {
 
-    conn.query('SELECT * FROM employee_payroll.employee_hours_worked WHERE id=' + req.params.id, function(err,rows) {
+    conn.query('SELECT * FROM employee_payroll.payslip WHERE id = ' + req.params.id, function(err,rows) {
         if(err){
             console.log(err)
             // res.render('../views/edit_workSheet',
@@ -59,9 +58,13 @@ router.get('/edit_workSheet/edit/:id', function(req,res) {
 
 router.post('/edit_workSheet/update/:id', function(req,res) {
 
+    var regSal= parseInt(req.params.hourly_rate) * parseInt(req.body.reg_hrs_wrkd);
+    var otRate = parseInt(req.body.basic_hours) * 1.5;
+    var otSal =+ otRate * parseInt(req.body.ot_hrs);
+    var totalSal = regSal + otSal;
+
     // if(req.session.loggedin == true ) {
-        let sqlQuery = "UPDATE employee_payroll.employee_hours_worked SET emply_id ='" + req.body.emply_id + 
-        "', first_nm ='" + req.body.name +  
+        let sqlQuery = "UPDATE employee_payroll.payslip SET emply_id ='" + req.body.emply_id +  
         "', basic_hrs ='" +  req.body.basic_hrs + 
         "', date_from ='" +  req.body.date_from + 
         "', date_to ='" +  req.body.date_to + 
@@ -69,7 +72,7 @@ router.post('/edit_workSheet/update/:id', function(req,res) {
         "', absent_id ='" + req.body.absent_id +
         "', reg_hrs_wrkd ='" + req.body.reg_hrs_wrkd +
         "', ot_hrs ='" + req.body.ot_hrs +
-        "' WHERE id = " + req.body.id;
+        "' WHERE id = " + req.params.id;
     
        conn.query(sqlQuery,(err,rows) => 
     
@@ -88,7 +91,7 @@ router.post('/edit_workSheet/update/:id', function(req,res) {
 
 router.get('/edit_workSheet/delete/:id', function(req, res){
     // if(req.session.loggedin == true ) {
-        conn.query('DELETE FROM employee_payroll.employee_hours_worked WHERE id =' + req.params.id, function(err, row){
+        conn.query('DELETE FROM employee_payroll.payslip WHERE id =' + req.params.id, function(err, row){
             if(err)  throw err;
             
                 res.redirect('/update_sal');

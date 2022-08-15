@@ -6,18 +6,18 @@ router.get('/view_payslip', function(req, res) {
 
     if(req.session.loggedin == true ) {
 
-    conn.query("SELECT * FROM employees", function(err,row) {
+    conn.query(`SELECT * FROM employees WHERE emply_id = "${req.session.emply_id}"`, function(err,row) {
         if(err){ 
         console.log(err)  
         }
         else{ 
-            res.send(row)
-            // res.render('../views/view_payslip',
-            // {
-            //     page_title: "Employees Payslip",
-            //     view: row,
-            //     my_session: req.session
-            // });
+            // res.send(row)
+            res.render('../views/view_payslip',
+            {
+                page_title: "Employees Payslip",
+                view: row,
+                my_session: req.session
+            });
         }
                             
     });

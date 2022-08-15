@@ -10,7 +10,8 @@ router.get('/new_payslip', function(req,res,next){
             console.log(err);
         } else {
             res.render('../views/new_payslip', {
-                it: rows
+                it: rows,
+                my_session:req.session,
             }); 
              next();
         }

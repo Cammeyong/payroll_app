@@ -87,6 +87,35 @@ router.get('/employee_payslip_list', function(req, res, next) {
 // }
    
 });
+router.get('/acc_update_sal', function(req, res, next) {
+    
+    if(req.session.loggedin == true && req.session.is_authorised == 1) {
+        console.log(req.session)
+        conn.query('SELECT ps.*, ps.id as payId, em.*, dp.* FROM employee_payroll.payslip ps, employee_payroll.employees em, employee_payroll.departments dp WHERE em.emply_id = ps.emply_id GROUP BY payId', function(err,row) {
+            // console.log(err);     
+            
+                if(err){ 
+                    console.log(err)
+                      
+                }
+                else{ 
+                    res.render('../views/update_sal',
+                    {
+                        page_title: "Employee Work Hours",
+                        newSal: row,
+                        my_session: req.session,
+                       
+                    });
+                    
+                } 
+                                          
+        });         
+
+    }else{
+        res.redirect('/login')
+    }
+       
+});
 
 
 router.get('/employee_payslip/edit/:id', function(req, res, next) {
@@ -120,10 +149,13 @@ router.get('/employee_payslip/edit/:id', function(req, res, next) {
 router.post('/employee_payslip/update/:id', function (req,res) {
     if(req.session.loggedin == true ) {
     let sqlQuery = "UPDATE employee_payroll.payslip SET emply_id ='" + req.body.emply_id + 
-    "', date ='" + req.body.date + 
+    "', cycle_id ='" + req.body.cycle_id + 
+    "', date_from ='" + req.body.date_from + 
+    "', date_to ='" + req.body.date_to + 
     "', regular_pay ='" +  req.body.regular_pay + 
     "', overtime ='" + req.body.overtime + 
     "', gross_pay ='" + req.body.gross_pay +
+    "', tax_rate ='" + req.body.tax_rate +
     "', net_pay = '" + req.body.net_pay +
     "' WHERE id = " + req.body.id;
 

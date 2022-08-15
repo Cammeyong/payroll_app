@@ -9,69 +9,74 @@
    
 </head>
 <body>
-    `<%- include('nav.ejs') %> 
+    <%- include('nav.ejs') %> 
+
+    <h1><%= my_session.first_nm %> Welcome To Your
+    <br>
+    <%= my_session.from_department %> Portal    
+    </h1>
+
     
 
-    <h1>Employee Work Sheet</h1>
+    <!-- <h1>Employee Work Sheet</h1> -->
 
-    <form action="/update_sal" method="post" class="tour_com_list">
-
-        <input type="hidden" name="id" id="id">
 
         <div class="con">
             <div class="CNP">
-                <a href="/new_reg_sal"><button type="button">Register New Employee Work Sheet</button></a>
+                <a href="/new_reg_sal"><button type="button">New Employee Work Sheet</button></a>
             </div>
 
         </div>
+
+      
         
-        <table>
-            <thead>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Basic Hours</th>
+                <th>Days Absent</th>
+                <th>Reason</th>
+                <th>Regular Hours</th>
+                <th>Overtime</th>
+                <th>Action</th>
+                
+            </tr>
+        </thead>
+
+        <tbody>
+            <% if(newSal.length) { for(var i = 0; i< newSal.length; i++) {%>
                 <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Basic Hours</th>
-                    <th>Days Absent</th>
-                    <th>Reason</th>
-                    <th>Regular Hours</th>
-                    <th>Overtime</th>
-                    <th>Action</th>
-                    
+                    <td><%= newSal[i].emply_id %></td>
+                    <td><%= newSal[i].first_nm + " " + newSal[i].last_nm %> </td>
+                    <td><%= new Date(newSal[i].date_from).toLocaleDateString('fr-CA') %></td>
+                    <td><%= new Date(newSal[i].date_to).toLocaleDateString('fr-CA') %></td>
+                    <td><%= newSal[i].basic_hrs %></td>
+                    <td><%= newSal[i].days_absent %></td>
+                    <td><%=newSal[i].absent_id%></td>
+                    <td><%=newSal[i].reg_hrs_wrkd %></td>
+                    <td><%=newSal[i].ot_hrs %></td>
+                    <td>
+                        <a href="/edit_workSheet/edit/<%=newSal[i].payId%>" class="update">Edit</a>
+                        <a href="/edit_workSheet/delete/<%=newSal[i].payId%>" class="delete">Delete</a>
+                    </td>
                 </tr>
-            </thead>
+            <% } %>
+            <%
+    
+            }else{ %>
+                <tr>
+                    <td colspan="9" style="text-align: center;"><b>No New Work Sheet</b></td>
+                </tr>
+            <% } %>
+        </tbody>
 
-            <tbody>
-                <% if(newSal.length) { for(var i = 0; i< newSal.length; i++) {%>
-                    <tr>
-                        <td><%= newSal[i].emply_id %></td>
-                        <td><%= newSal[i].first_nm + " " + newSal[i].last_nm %> </td>
-                        <td><%= new Date(newSal[i].date_from).toLocaleDateString('fr-CA') %></td>
-                        <td><%= new Date(newSal[i].date_to).toLocaleDateString('fr-CA') %></td>
-                        <td><%= newSal[i].basic_hrs %></td>
-                        <td><%= newSal[i].days_absent %></td>
-                        <td><%=newSal[i].absent_id%></td>
-                        <td><%=newSal[i].reg_hrs_wrkd %></td>
-                        <td><%=newSal[i].ot_hrs %></td>
-                        <td>
-                            <a href="/edit_workSheet/edit/<%=newSal[i].id%>" class="update">Edit</a>
-                            <a href="/edit_workSheet/delete/<%=newSal[i].id%>" class="delete">Delete</a>
-                        </td>
-                    </tr>
-                <% } %>
-                <%
-        
-                }else{ %>
-                    <tr>
-                        <td colspan="9" style="text-align: center;"><b>No New Work Sheet</b></td>
-                    </tr>
-                <% } %>
-            </tbody>
-
-        </table>
+    </table>
                
-    </form>
+   
 
 </body>
 </html>    

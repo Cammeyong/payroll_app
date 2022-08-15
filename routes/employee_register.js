@@ -10,7 +10,8 @@ router.get('/employee_register', function(req,res,next){
             console.log(err);
         } else {
             res.render('../views/employee_register', {
-                it: rows
+                it: rows,
+                my_session:req.session,
             }); 
              next();
         }
