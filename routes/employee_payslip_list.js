@@ -54,7 +54,7 @@ router.get('/employee_payslip_list', function(req, res, next) {
     
     let aggQuery =`select count(emply_id) as Total_Employees, sum(net_pay) as Total_Payments, avg(net_pay) as Average_Payments, min(net_pay) as Minimum_Outgoing_Payment, max(net_pay) as Maximum_Outgoing_Payment from payslip`
 
-    // if(req.session.loggedin == true ) {
+    if(req.session.loggedin == true ) {
         
    conn.query('SELECT * FROM payslip', function(err,row) {
        console.log(err);
@@ -82,9 +82,9 @@ router.get('/employee_payslip_list', function(req, res, next) {
                           
    });
    
-//     }else {
-//     res.redirect('/login')
-// }
+    }else {
+    res.redirect('/login')
+}
    
 });
 router.get('/acc_update_sal', function(req, res, next) {

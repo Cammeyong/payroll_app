@@ -4,22 +4,28 @@ var conn = require('../lib/db');
 var bcrypt = require('bcrypt');
 
 router.get('/employee_register', function(req,res,next){
+
+    // if(req.session.loggedin == true ) {
  
-    conn.query ("SELECT * FROM employees", function(err, rows) {
-        if(err){
-            console.log(err);
-        } else {
-            res.render('../views/employee_register', {
-                it: rows,
-                my_session:req.session,
-            }); 
-             next();
-        }
-    })
+        conn.query ("SELECT * FROM employees", function(err, rows) {
+            if(err){
+                console.log(err);
+            } else {
+                res.render('../views/employee_register', {
+                    it: rows,
+                    my_session:req.session,
+                }); 
+                next();
+            }
+        })
+    // }else {
+    //     res.redirect('/login')
+    // } 
 
 });
 
 router.post('/employee_register/add', async function(req,res,){
+    // if(req.session.loggedin == true ) {
    
     try {
         var password = req.body.password;
@@ -50,6 +56,9 @@ router.post('/employee_register/add', async function(req,res,){
         res.status(500).send('Something went wrong')
     }
     
+// }else {
+//     res.redirect('/login')
+// } 
    
 })
 

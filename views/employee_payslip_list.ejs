@@ -92,7 +92,7 @@
 
                     <tr>
                         <td colspan="5" style="text-align: right; font-size: 1.3rem;"><b>Total Outgoing Payments:</b></td>
-                        <td><b> $<%= new Intl.NumberFormat('en-US', {
+                        <td><b> <%= new Intl.NumberFormat('en-US', {
                             style: 'currency',
                             currency: 'USD',
                             minimumFractionDigits: 2
@@ -121,13 +121,13 @@
                                 minimumFractionDigits: 2
                             }).format(net_pay[0].Minimum_Outgoing_Payment)  %></li>
 
-                <li>Minimum Payment: <%= new Intl.NumberFormat('en-US', {
+                <li>Maximum Payment: <%= new Intl.NumberFormat('en-US', {
                                 style: 'currency',
                                 currency: 'USD',
                                 minimumFractionDigits: 2
                             }).format(net_pay[0].Maximum_Outgoing_Payment)  %></li>
 
-                <li>Minimum Payment: <%= new Intl.NumberFormat('en-US', {
+                <li>Average Payment: <%= new Intl.NumberFormat('en-US', {
                                 style: 'currency',
                                 currency: 'USD',
                                 minimumFractionDigits: 2

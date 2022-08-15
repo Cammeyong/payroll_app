@@ -4,21 +4,28 @@ var conn = require('../lib/db');
 
 router.get('/new_reg_sal', function(req,res,next) {
 
-    conn.query('SELECT * FROM employee_payroll.departments WHERE department_id =' + req.session.from_department, function(err, rows) {
-        if(err) {
-            console.log(err);
-        }else {
-            res.render('../views/new_reg_sal', {
-                // rates:rows,
-                page_title: "New Employees",
-                my_session: req.session,
-                retVal:rows
-            });
-            next();
-        }
-    })
+    if(req.session.loggedin == true ) {
+
+        conn.query('SELECT * FROM employee_payroll.departments WHERE department_id =' + req.session.from_department, function(err, rows) {
+            if(err) {
+                console.log(err);
+            }else {
+                res.render('../views/new_reg_sal', {
+                    // rates:rows,
+                    page_title: "New Employees",
+                    my_session: req.session,
+                    retVal:rows
+                });
+                next();
+            }
+        })
+    }else {
+        res.redirect('/login')
+    } 
 });
 router.post('/new_reg_sal/add/:hourly_rate/:basic_hours/', function(req,res) {
+
+    if(req.session.loggedin == true ) {
 
     var regSal= parseInt(req.params.hourly_rate) * parseInt(req.body.reg_hrs_wrkd);
     var otRate = parseInt(req.params.hourly_rate
@@ -56,10 +63,14 @@ router.post('/new_reg_sal/add/:hourly_rate/:basic_hours/', function(req,res) {
     if(err) {
         console.log(err);
     } else {
-        res.redirect('/')
+        res.redirect('/update_sal')
     }
     // res.send(JSONResponse(results));
     });
+
+}else {
+    res.redirect('/login')
+} 
 })
 
 

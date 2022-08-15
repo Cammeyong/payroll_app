@@ -49,17 +49,20 @@
                 <pre></pre>
 
                 <label for="">From:
-                    <input type="date" name="date" id="date1" value="<%= data[0].cycle_id %>" placeholder="<%= data[0].cycle_id %>" />
+                    <input type="date" name="date_from" id="date1" value="<%= data[0].cycle_id %>" placeholder="<%= data[0].cycle_id %>" />
                 </label>
                 <br><br>
                 <pre></pre>
                 
                 <label for="">To:
-                    <input type="date" name="date" id="date2" value="<%= new Date(data[0].date).toLocaleDateString('fr-CA') %>" placeholder="<%= new Date(data[0].date).toLocaleDateString('fr-CA') %>" />
+                    <input type="date" name="date_to" id="date2" value="<%= new Date(data[0].date).toLocaleDateString('fr-CA') %>" placeholder="<%= new Date(data[0].date).toLocaleDateString('fr-CA') %>" />
                 </label>
                 <br><br>
                 <pre></pre>
 
+                <label for="">Tax Amount:
+                    <input type="number" name="tax_rate" value="<%= data[0].tax_rate %>" placeholder="<%= data[0].tax_rate %>" />
+                </label>
                
             </div>
 
