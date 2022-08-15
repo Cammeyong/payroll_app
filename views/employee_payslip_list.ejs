@@ -26,7 +26,9 @@
         </div>
 
         <label for="" style="margin-left: 10%; font-size: 1.2rem"><b>Total Generated Payslips: <%= net_pay[0].Total_Employees%></b></label>
+
     </div>
+    
         <table>
             <thead>
                 <tr>
@@ -56,26 +58,31 @@
                             currency: 'USD',
                             minimumFractionDigits: 2
                           }).format(payslip[i].regular_pay)  %></td>
+
                         <td><%= new Intl.NumberFormat('en-US', {
                             style: 'currency',
                             currency: 'USD',
                             minimumFractionDigits: 2
                           }).format(payslip[i].overtime)  %></td>
+
                         <td><%= new Intl.NumberFormat('en-US', {
                             style: 'currency',
                             currency: 'USD',
                             minimumFractionDigits: 2
                           }).format(payslip[i].gross_pay)  %></td>
+
                         <td><%= new Intl.NumberFormat('en-US', {
                             style: 'currency',
                             currency: 'USD',
                             minimumFractionDigits: 2
                           }).format(payslip[i].tax_rate)  %></td>
+
                         <td><%= new Intl.NumberFormat('en-US', {
                             style: 'currency',
                             currency: 'USD',
                             minimumFractionDigits: 2
                           }).format(payslip[i].net_pay)  %></td>
+
                         <td>
                             <a href="/employee_payslip/edit/<%=payslip[i].id%>" class="update">Edit</a>
                             <a href="/employee_payslip/delete/<%=payslip[i].id%>" class="delete">Delete</a>

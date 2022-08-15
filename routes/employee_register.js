@@ -29,6 +29,8 @@ router.post('/employee_register/add', async function(req,res,){
             first_nm:     req.body.first_nm,
             last_nm:      req.body.last_nm,
             email:        req.body.email,
+            department:   req.body.department,
+            authorised:   req.body.authorised,
             password:     password,    
         };
     

@@ -321,14 +321,14 @@ h1{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 537px;
+    height: 545px;
 }
 .regForm {
     width: 500px;
     height: auto;
     background-color: rgb(238, 239, 240, 0.5);
     text-align: center;
-    padding: 2% 0;  
+    /* padding: 2% 0;   */
     /* margin: 0 0 5% 32%; */
 }
 .regForm > h2 {
@@ -340,13 +340,20 @@ h1{
     font-size: 2rem;
     text-align: center;
     padding: 20px;
-    transform: translateY(-80px);
+    transform: translateY(-50px);
 }
 .regCon {
     transform: translateY(-40px);
 }
 .regForm > .regCon > input[name="email"], .regForm > .regCon > input[name="password"], .regForm > .regCon > input[name="first_nm"], .regForm > .regCon > input[name="last_nm"], .regForm > .regCon > input[name="student_id"], .regForm > .regCon > input[id="emply_id"] {
-    padding: 2.5%;
+    padding: 8px;
+    width: 70%;
+    border-radius: 15px;
+    margin: 2% 0;
+    border: 1px solid navy;
+}
+.regForm > .regCon select {
+    padding: 8px;
     width: 70%;
     border-radius: 15px;
     margin: 2% 0;
@@ -356,7 +363,7 @@ h1{
 .regForm button {
     padding: 10px;
     width: 30%;
-    margin: 3%;
+    margin: 2%;
     background-color: navy;
     color: orangered;
     font-size: 1.2em;
@@ -383,13 +390,12 @@ h1{
 table .payslip_list {
     width: 80%;
     margin: 10% 10%;
-    width: 90%;
+    /* width: 90%; */
     /* margin: 10% 5%; */
 }
 table {
-    width: 95%;
-    margin: 2% 2.5%;
-
+    width: 98%;
+    margin: 2% 1%;
     border-collapse: collapse;
     text-align: center;
 }
@@ -402,7 +408,8 @@ table th {
 
 }
 table td {
-    padding: 10px;
+    padding: 10px 8px;
+
 }
 .payView {
     margin-bottom: 10%;
@@ -411,7 +418,7 @@ table td {
 
 .update, .delete {
     text-decoration: none;
-    padding: 8px;
+    padding: 6px;
     width: 30%;
     margin: 3%;
     background-color: navy;
@@ -646,19 +653,19 @@ table td {
     background-color: gold;
     color: black;
 }
-.editWorhSheet {
-    width: 600px;
+.editWorkSheet {
+    width: 500px;
     height: 520px;
     /* margin: 3% 0 5% 28%; */
     padding: 2%;
     background-color: rgb(238, 239, 240, 0.5);
 }
-.editWorhSheet > .container > .row > .col  input {
+.editWorkSheet > .container > .row > .col  input {
     margin-top: 3%;
     padding: 6px;
     width: 80%;
 }
-.editWorhSheet button {
+.editWorkSheet button {
     padding: 8px;
     width: 25%;
     margin: 3%;
@@ -669,7 +676,7 @@ table td {
     border: none;
 }
 .newRegSalForm {
-    width: 600px;
+    width: 500px;
     height: 520px;
     /* margin: 3% 0 5% 28%; */
     padding: 1% 0 0 3%;
@@ -690,10 +697,10 @@ table td {
     margin-left: 5%;
 }
 .newRegSalForm input[name="date_from"] {
-    margin-left: 12%;
+    margin-left: 13.5%;
 }
 .newRegSalForm input[name="date_to"] {
-    margin-left: 15%;
+    margin-left: 17.5%;
 }
 .newRegSalForm input[name="reg_hrs_wrkd"] {
     margin-left: 2%;
